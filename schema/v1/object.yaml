@@ -1,0 +1,49 @@
+# Models
+
+ObjectId:
+  $ref: './parameters.yaml#/ResourceId'
+
+ObjectName:
+  type: string
+  example: "Object Name"
+
+
+Object:
+  type: object
+  properties:
+    id:
+      $ref: '#/ObjectId'
+    name:
+      $ref: '#/ObjectName'
+  required:
+    - id
+    - name
+
+
+# Request Bodies
+
+ObjectCreateUpdateBody:
+  type: object
+  properties:
+    name:
+      $ref: '#/ObjectName'
+  required:
+    - name
+
+
+# Response Bodies
+
+ObjectResponseBody:
+  type: object
+  properties:
+    data:
+      $ref: '#/Object'
+
+ObjectListResponseBody:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/Object'
+        maxItems: 100
